@@ -15,6 +15,7 @@ var common_pb = require('./common_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.exportSymbol('proto.api.ClockRequest', null, global);
+goog.exportSymbol('proto.api.ClockRequest.EntryType', null, global);
 goog.exportSymbol('proto.api.TSStatusResponse', null, global);
 goog.exportSymbol('proto.api.TSStatusResponse.Status', null, global);
 goog.exportSymbol('proto.api.TimeEntry', null, global);
@@ -67,7 +68,7 @@ proto.api.ClockRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.api.ClockRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -104,6 +105,10 @@ proto.api.ClockRequest.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {!proto.api.ClockRequest.EntryType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -133,6 +138,36 @@ proto.api.ClockRequest.prototype.serializeBinary = function() {
  */
 proto.api.ClockRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.api.ClockRequest.EntryType = {
+  WORK: 0,
+  BREAK: 1
+};
+
+/**
+ * optional EntryType Type = 1;
+ * @return {!proto.api.ClockRequest.EntryType}
+ */
+proto.api.ClockRequest.prototype.getType = function() {
+  return /** @type {!proto.api.ClockRequest.EntryType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {!proto.api.ClockRequest.EntryType} value */
+proto.api.ClockRequest.prototype.setType = function(value) {
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 

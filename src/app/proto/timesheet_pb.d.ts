@@ -7,6 +7,9 @@ import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/t
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 
 export class ClockRequest extends jspb.Message {
+  getType(): ClockRequest.EntryType;
+  setType(value: ClockRequest.EntryType): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ClockRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ClockRequest): ClockRequest.AsObject;
@@ -19,6 +22,12 @@ export class ClockRequest extends jspb.Message {
 
 export namespace ClockRequest {
   export type AsObject = {
+    type: ClockRequest.EntryType,
+  }
+
+  export enum EntryType {
+    Work = 0,
+    Break = 1,
   }
 }
 
