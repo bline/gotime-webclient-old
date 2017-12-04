@@ -16,14 +16,14 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private logger: LoggerService, public oidcSecurityService: OidcSecurityService, private router: Router ) {
 
     // Incorrect source file name and line number :(
-    logger.invokeConsoleMethod( 'info', 'AppComponent: logger.invokeConsoleMethod()');
-    logger.invokeConsoleMethod( 'warn', 'AppComponent: logger.invokeConsoleMethod()');
-    logger.invokeConsoleMethod( 'error', 'AppComponent: logger.invokeConsoleMethod()');
+    this.logger.invokeConsoleMethod( 'info', 'AppComponent: logger.invokeConsoleMethod()');
+    this.logger.invokeConsoleMethod( 'warn', 'AppComponent: logger.invokeConsoleMethod()');
+    this.logger.invokeConsoleMethod( 'error', 'AppComponent: logger.invokeConsoleMethod()');
 
     // Correct source file name and line number :)
-    logger.info('AppComponent: logger.info()');
-    logger.warn('AppComponent: logger.warn()');
-    logger.error('AppComponent: logger.error()');
+    this.logger.info('AppComponent: logger.info()');
+    this.logger.warn('AppComponent: logger.warn()');
+    this.logger.error('AppComponent: logger.error()');
 
     if (this.oidcSecurityService.moduleSetup) {
       this.onOidcModuleSetup();
@@ -40,7 +40,8 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-    ngOnInit() {
+	ngOnInit() {
+		this.logger.info("ngOnInit appComponent");
     }
 
     ngOnDestroy(): void {

@@ -35,7 +35,7 @@ export class ConsoleLoggerService implements Logger {
   }
   
   invokeConsoleMethod(type: string, args?: any): void {
-    const logFn: Function = (console)[type] || console.log || noop;
+	const logFn: Function = (console as any)[type] || window.console.log || noop;
     logFn.apply(console, [args]);
   }
 }

@@ -3,8 +3,6 @@
 
 import * as timesheet_pb from "./timesheet_pb";
 import * as common_pb from "./common_pb";
-import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
-import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
 export class TimeSheet {
   static serviceName = "api.TimeSheet";
 }

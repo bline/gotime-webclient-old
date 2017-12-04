@@ -3,7 +3,6 @@
 
 import * as user_pb from "./user_pb";
 import * as common_pb from "./common_pb";
-import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 export class Accounts {
   static serviceName = "api.Accounts";
 }
