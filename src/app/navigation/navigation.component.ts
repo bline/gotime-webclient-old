@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { AuthService } from '../services/auth/auth.service'
 
 @Component({
     selector: 'app-navigation',
@@ -12,7 +12,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     isAuthorizedSubscription: Subscription;
     isAuthorized: boolean;
 
-    constructor(public oidcSecurityService: OidcSecurityService) {
+    constructor(public auth: AuthService) {
     }
 
     ngOnInit() {
@@ -27,7 +27,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
 
     login() {
-        this.oidcSecurityService.authorize();
+        this.auth.login();
     }
 
     refreshSession() {
@@ -35,6 +35,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
 
     logout() {
-        this.oidcSecurityService.logoff();
+        this.auth.logout();
     }
 }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 import { LoggerService } from './services/log4ts/logger.service';
 import { ConsoleLoggerService } from './services/log4ts/console-logger.service';
@@ -9,6 +10,8 @@ import { ConsoleLoggerService } from './services/log4ts/console-logger.service';
 import { AppComponent } from './app.component';
 import { Configuration } from './app.constants';
 import { routing } from './app.routes';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuardService } from './services/auth/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
@@ -39,7 +42,9 @@ import { AuthModule, OidcSecurityService, OpenIDImplicitFlowConfiguration } from
     UnauthorizedComponent
   ],
   providers: [
-    OidcSecurityService,
+    AuthGuardService,
+    ...AUTH_PROVIDERS,
+    AuthService,
     Configuration,
     {
       provide: LoggerService,

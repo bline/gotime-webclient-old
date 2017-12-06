@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OidcSecurityService, AuthorizationResult} from 'angular-auth-oidc-client';
-
+import { routing } from './app.routes';
 import { LoggerService } from './services/log4ts/logger.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-component',
@@ -13,7 +13,8 @@ import { LoggerService } from './services/log4ts/logger.service';
 
 export class AppComponent implements OnInit, OnDestroy {
 
-  constructor(private logger: LoggerService, public oidcSecurityService: OidcSecurityService, private router: Router ) {
+  constructor(private logger: LoggerService,
+              private router: Router, private auth: AuthService) {
 
     // Incorrect source file name and line number :(
     this.logger.invokeConsoleMethod( 'info', 'AppComponent: logger.invokeConsoleMethod()');
@@ -25,19 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.logger.warn('AppComponent: logger.warn()');
     this.logger.error('AppComponent: logger.error()');
 
-    if (this.oidcSecurityService.moduleSetup) {
-      this.onOidcModuleSetup();
-    } else {
-      this.oidcSecurityService.onModuleSetup.subscribe(() => {
-        this.onOidcModuleSetup();
-      });
-    }
-
-    this.oidcSecurityService.onAuthorizationResult.subscribe(
-      (authorizationResult: AuthorizationResult) => {
-        this.onAuthorizationResultComplete(authorizationResult);
-      }
-    );
+    auth.handleAuth();
   }
 
 	ngOnInit() {
